@@ -24,8 +24,6 @@ const Dashboard = () => {
         <div className='dashboard'>
             <MealList potlucks={potlucks} setPotlucks={setPotlucks}/>
         </div>
-        
-        
     )
 }
 
