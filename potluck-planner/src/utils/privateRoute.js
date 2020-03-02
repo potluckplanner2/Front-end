@@ -1,4 +1,4 @@
-import Reeact from 'react';
+import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
 import { Component } from 'react';
 
@@ -10,7 +10,7 @@ const PrivateRoute = ({component: Component, ...rest}) => {
                 localStorage.getItem('token') ? (
                     <Component {...props}/>
                 ) : (
-                    <Redirect to = '/login'/>
+                    <Redirect to = '/api/login'/>
                 )
             } 
         />    
