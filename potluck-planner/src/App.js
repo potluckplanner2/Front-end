@@ -13,8 +13,8 @@ function App() {
     <div className="App">
       <Nav />
       <Switch>
-        <PrivateRoute exact path='/potlucks' component={Dashboard}/>
-        <Route exact path="/login" component={Login}/>
+        <PrivateRoute exact path='/potlucks' component={Dashboard} />
+        <Route exact path="/login" component={Login} />
       </Switch>
     </div>
   );
