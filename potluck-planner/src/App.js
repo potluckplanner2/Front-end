@@ -7,6 +7,7 @@ import Nav from './components/nav';
 import PrivateRoute from './utils/privateRoute';
 import Dashboard from './components/dashboard';
 import Login from './components/login';
+import Register from './components/register';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Nav />
       <Switch>
         <PrivateRoute exact path='/potlucks' component={Dashboard} />
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/api/auth/register" component={Register} />
       </Switch>
     </div>
   );
