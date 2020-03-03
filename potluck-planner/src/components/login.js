@@ -4,6 +4,8 @@ import styled from "styled-components";
 import * as Yup from "yup";
 import { withFormik, Field, Form } from "formik"
 
+import {axiosWithAuth} from '../utils/axiosWithAuth';
+
 const NewDiv = styled.div`
 padding: 20px;
 display: flex;
@@ -72,7 +74,7 @@ const Login = withFormik({
       username: Yup 
       .string()
       .required("You need a username")
-      .min(6),
+      .min(5),
       password: Yup 
       .string()
       .required("You need a password")
@@ -81,8 +83,8 @@ const Login = withFormik({
 
     handleSubmit(values, { setStatus, resetForm }) {
         console.log("submitting", values);
-        axios
-          .post("", values)
+        axiosWithAuth()
+          .post("/api/auth/login", values)
           .then(res => {
             console.log("success", res);
             
