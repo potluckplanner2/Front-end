@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import axios from "axios";
 import styled from "styled-components";
-import * as Yup from "yup";
+import * as Yup  from "yup";
 import { withFormik, Field, Form } from "formik"
 
 const NewDiv = styled.div`
@@ -15,19 +15,12 @@ border: 2px dotted white;
 justify-content: center;
 align-items: center;
 `
-const User = ({ values, errors, status }) => {
+const User = ({ values, errors, status, touched }) => {
     
-    const [user, setUser] = useState([]);
-  
     
-    useEffect(() => {
-      console.log("status has changed!", status);
-     
-      status && setUser(user => [...user, status]);
-    }, [status]);
     
-
-  return (
+return (
+    
       <div>
     <NewDiv className="login">
         <h2>LogIn</h2>
@@ -39,6 +32,9 @@ const User = ({ values, errors, status }) => {
             name="username"
             placeholder = "Username"
           />
+          {touched.username && errors.username && (
+            <p className="errors">{errors.username}</p>
+          )} 
         </label>
         <label>
           <Field
@@ -46,6 +42,9 @@ const User = ({ values, errors, status }) => {
             name="password"
             placeholder = "Password"
           />
+          {touched.password && errors.password && (
+            <p className="errors">{errors.password}</p>
+          )} 
         </label>
         <br></br>
         <input type = "submit"/>
@@ -79,14 +78,13 @@ const Login = withFormik({
       .min(6),
     }),
 
-    handleSubmit(values, { setStatus, resetForm }) {
+    handleSubmit(values, { resetForm }) {
         console.log("submitting", values);
         axios
           .post("", values)
           .then(res => {
             console.log("success", res);
             
-            setStatus(res.data);
     
             resetForm();
           })
@@ -94,3 +92,4 @@ const Login = withFormik({
       }
 })(User)
 export default Login;
+
