@@ -5,6 +5,9 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const FormContainer = styled.div`
+    width: 88%;
+    display: flex;
+    justify-content: center;
     border: 2px solid red;
 `;
 
