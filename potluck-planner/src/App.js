@@ -1,14 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+import Register from './components/register'
 import './App.css';
 import Login from "./components/login"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Login />
-      </header>
+      <Register />
+      <Login />
     </div>
   );
 }
