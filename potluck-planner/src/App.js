@@ -4,6 +4,7 @@ import {Route, Switch} from 'react-router-dom';
 
 import Nav from './components/nav';
 import PrivateRoute from './utils/privateRoute';
+import Profile from './components/Profile';
 import Dashboard from './components/dashboard';
 import Login from './components/login';
 import Register from './components/register';
@@ -17,6 +18,7 @@ function App() {
     <div className="App">
       <Nav />
       <Switch>
+        <Route exact path='/potlucks/profile' component={Profile}/>
         <Route exact path='/potlucks' component={Dashboard} />
         <Route exact path="/api/auth/register" component={Register} />
         <Route exact path="/api/login" component={Login} />

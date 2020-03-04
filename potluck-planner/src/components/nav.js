@@ -14,8 +14,8 @@ export default function Nav() {
                 <Link className='nav-link' to='/api/auth/login'>Login</Link>
                 <Link className='nav-link' to='/login' onClick={signOut}>Sign Out</Link>
                 <Link className='nav-link' to='/api/potluck'>Create A Potluck</Link> 
+                <Link className='nav-link' to='/potlucks/profile'>Profile</Link>
             </nav>
         </div>
     )
-
 };
