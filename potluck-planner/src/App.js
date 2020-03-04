@@ -15,7 +15,8 @@ function App() {
       <Nav />
       <Switch>
         <PrivateRoute exact path='/potlucks' component={Dashboard} />
-        <Route exact path="/api/register" component={Register} />
+        <Route exact path="/api/auth/register" component={Register} />
+        <Route exact path="/api/login" component={Login} />
       </Switch>
     </div>
   );
