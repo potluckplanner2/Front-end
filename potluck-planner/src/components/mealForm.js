@@ -23,7 +23,7 @@ export const MealForm = props => {
             ...meal,
             [e.target.name]: value
         });
-    }
+    };
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -55,7 +55,6 @@ export const MealForm = props => {
                 value={props.date}
             />
 
-
             <input 
                 type='textfield'
                 name='description'
@@ -72,7 +71,7 @@ export const MealForm = props => {
         // const description = potluck.description;
         // const date = potluck.date;
 
-    )
+    );
     
 
-}
+};
