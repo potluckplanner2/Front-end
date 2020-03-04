@@ -7,7 +7,6 @@ const MealCard = ({potluck}) => {
             <h3>{potluck.title}</h3>
             <h5>{potluck.date} at {potluck.time}</h5>
             <h4>Hosted at {potluck.location}</h4>
-            <h4>{potluck.guests.length} guests</h4>
             <div className='card-description'>
                 <p>{potluck.description}</p>
             </div>
