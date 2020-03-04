@@ -18,8 +18,6 @@ function App() {
         <Route exact path="/api/auth/register" component={Register} />
         <Route exact path="/api/login" component={Login} />
       </Switch>
-     
-      
     </div>
   );
 }
