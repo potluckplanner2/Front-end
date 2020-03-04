@@ -11,7 +11,6 @@ function Meal(props) {
     const match = useRouteMatch();
 
     const fetchMeal = id => {
-
         axiosWithAuth()
             .get(`/api/potlucks/${id} `)
             .then(res => setMeal(res.data))
@@ -25,19 +24,19 @@ function Meal(props) {
     const handleUpdate = e => {
         e.preventDefault();
         props.history.push(`/api/potluck/${meal.id}`);
-      };
+    };
     
-      const handleDelete = e => {
+    const handleDelete = e => {
         e.preventDefault();
-        axios
-          .delete(`/api/potluck/${meal.id}`)
-          .then(res=> {
-            props.refreshMovies();
-            props.history.push('/potlucks')
-          })
-          .catch(err => console.log(err))
+        axiosWithAuth()
+            .delete(`/api/potluck/${meal.id}`)
+            .then(res=> {
+                
+                props.history.push('/potlucks')
+            })
+            .catch(err => console.log(err))
     
-    }
+    };
 
     return (
         <div className='edit-container'>
