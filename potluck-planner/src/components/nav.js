@@ -9,13 +9,13 @@ export default function Nav() {
 
     return (
         <div className='navigation'>
-            <Link to='/' className='title'>Potluck Planner</Link>
+            <Link to='/potlucks' className='title'>Potluck Planner</Link>
             <nav className='nav-links'>
-                <Link className='nav-link' to='/api/login'>Login</Link>
-                <Link className='nav-link' to='/api/login' onClick={signOut}>Sign Out</Link>
+                <Link className='nav-link' to='/login'>Login</Link>
+                <Link className='nav-link' to='/login' onClick={signOut}>Sign Out</Link>
 
             </nav>
         </div>
     )
 
-}
+};

@@ -6,6 +6,8 @@ import { withFormik, Field, Form } from "formik"
 import '../login.scss';
 
 
+import {axiosWithAuth} from '../utils/axiosWithAuth';
+
 const NewDiv = styled.div`
 padding: 100px;
 display: flex;
@@ -111,10 +113,9 @@ const Login = withFormik({
         console.log("submitting", values);
         axios
           .post("https://potluck-planner2.herokuapp.com/api/auth/login", values)
+
           .then(res => {
             console.log("success", res);
-            
-    
             resetForm();
           })
           .catch(err => console.log(err.response));
