@@ -7,9 +7,11 @@ import PrivateRoute from './utils/privateRoute';
 import Dashboard from './components/dashboard';
 import Login from './components/login';
 import Register from './components/register';
+import Meal from './components/meal';
 
 
 function App() {
+  
   return (
     <div className="App">
       <Nav />
@@ -17,8 +19,9 @@ function App() {
         <Route exact path='/potlucks' component={Dashboard} />
         <Route exact path="/api/auth/register" component={Register} />
       </Switch>
-      <Route path="/Register" component={Register}/>
-      <Route path="/Login" component={Login}/>
+      <Route path="/auth/register" component={Register}/>
+      <Route path="/auth/login" component={Login}/>
+      <Route path="/api/potlucks/:id" render={props => <Meal {...props} />} />
     </div>
   );
 }
