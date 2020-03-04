@@ -11,7 +11,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         axiosWithAuth()
-            .get('/api/potlucks')
+            .get('/api/potluck')
             .then(res => {
                 console.log(res.data);
                 setPotlucks(res.data);
@@ -42,7 +42,7 @@ const Dashboard = () => {
         // ]
 
         // setPotlucks(dummyData);
-    })
+    }, [])
 
     return (
         <div className='dashboard'>
