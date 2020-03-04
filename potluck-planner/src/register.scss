@@ -1,74 +1,78 @@
 body {
     background-color: #241E4E;
 
-    h1 {
-        color: #FFF5D1;
-        font-family: "Lobster";
-        font-size: 2.6rem;
-    }
-}
-
-.registerForm {
-    border: 3px dotted #FFF5D1;
-    display: flex;
-    flex-wrap: wrap;
-    width: 36%;
-    margin: 2% auto;
-    padding: 1%;
-    justify-content: center;
-    background-color: #960200;
-    border-radius: 4px;
-
-    label {
+    .registerForm {
+        border: 3px dotted #FFF5D1;
         display: flex;
-        justify-content: space-between;
-        width: 100%;
-        margin: 2% 0;
-        color: #FFF5D1;
-        font-family: "Lobster";
-        font-size: 1.4rem;
+        flex-wrap: wrap;
+        width: 36%;
+        margin: 6% auto;
+        padding: 1% 2%;
+        justify-content: center;
+        background-color: #960200;
+        border-radius: 4px;
 
-        .field {
-            width: 44%;
-            padding: 10px 4px;
+        h1 {
+            color: #FFF5D1;
+            font-family: "Lobster";
+            font-size: 2.6rem;
+            text-shadow: 4px 4px rgba(0, 0, 0, .3);
+        }
+    
+        label {
             display: flex;
-            border: 1px solid #ccc;
+            justify-content: center;
+            width: 100%;
+            margin: 2% 0;
+            color: #FFF5D1;
+            font-family: "Lobster";
+            font-size: 1.4rem;
+    
+            .field {
+                width: 44%;
+                padding: 10px 4px;
+                display: flex;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #FFF5D1;
+                color: #241E4E;
+                box-sizing: border-box;
+                &:focus {
+                    outline: none;
+                }
+            }
+    
+            p {
+                width: 10px;
+                color: #FFD046;
+                margin: 0;
+                font-size: 1rem;
+            }
+    
+        }
+    
+        button {
+            width: 30%;
+            color: #FFF5D1;
             border-radius: 4px;
-            background-color: #FFF5D1;
-            color: #241E4E;
-            box-sizing: border-box;
+            padding: 6px 0;
+            border: none;
+            background-color:  #241E4E;
+            margin: 6% 0 4%;
+            font-family: "Lobster";
+            font-size: 1.4em;
+            cursor: pointer;
             &:focus {
                 outline: none;
             }
-        }
-
-        p {
-            width: 10px;
-            color: #FFD046;
-            margin: 0;
-            font-size: 1rem;
-        }
-
-    }
-
-    button {
-        width: 30%;
-        color: #FFF5D1;
-        border-radius: 4px;
-        padding: 6px 0;
-        border: none;
-        background-color:  #241E4E;
-        margin: 6% 0 4%;
-        font-family: "Lobster";
-        font-size: 1.4em;
-        &:focus {
-            outline: none;
-        }
-        &:hover {
-            background-color: rgb(62, 71, 145);
-            text-shadow: 4px 4px rgba(0, 0, 0, .5);
-            box-shadow: 4px 4px rgba(0, 0, 0, .8);
-            transition: .3s;
+            &:hover {
+                color: #FFD046;
+                background-color: rgb(62, 71, 145);
+                text-shadow: 4px 4px rgba(0, 0, 0, .5);
+                box-shadow: 4px 4px rgba(0, 0, 0, .8);
+                transition: .3s;
+            }
         }
     }
 }
+
