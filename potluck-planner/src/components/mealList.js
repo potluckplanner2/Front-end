@@ -2,8 +2,6 @@ import React from 'react';
 
 import MealCard from './mealCard';
 
-
-
 const MealList = ({potlucks}) => {
 
     return (

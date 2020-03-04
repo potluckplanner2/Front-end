@@ -86,8 +86,6 @@ const Login = withFormik({
           .post("/api/auth/login", values)
           .then(res => {
             console.log("success", res);
-            
-    
             resetForm();
           })
           .catch(err => console.log(err.response));
