@@ -1,121 +1,109 @@
 import React, { useState, useEffect } from 'react';
 import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
-import styled from 'styled-components';
-
-const FormContainer = styled.div`
-    width: 88%;
-    display: flex;
-    justify-content: center;
-    border: 2px solid red;
-`;
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import '../../src/register.scss';
 
 function Register({values, errors, touched, status}) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        console.log('waddup', status);
+        console.log(status);
         status && setData(data => [...data, status])
     }, [status])
 
     return(
-        <FormContainer>
-            <Form>
-                <label>
-                    First Name:
-                    <Field
+        <div>
+            <Form
+             className="registerForm">
+                 <h1>Get Started!</h1>
+                {/* <label htmlFor="firstName">
+                    First Name: 
+                    <Field className="field"
                      type="text"
                      id="firstName"
                      name="firstName"
+                     placeholder="First Name"
                     />
                     {touched.firstName && ErrorMessage.name &&(
                         <p>{errors.firstName}</p>
                     )}
                 </label>
-                <label>
+                <label htmlFor="lastName">
                     Last Name:
-                    <Field
+                    <Field className="field"
                      type="text"
                      id="lastName"
                      name="lastName"
+                     placeholder="Last Name"
                     />
                     {touched.lastName && ErrorMessage.name &&(
                         <p>{errors.lastName}</p>
                     )}
-                </label>
-                <label>
+                </label> */}
+                <label htmlFor="username">
                     Username:
-                    <Field
+                    <Field className="field"
                      type="text"
                      id="username"
                      name="username"
+                     placeholder="Username"
                     />
                     {touched.username && ErrorMessage.name &&(
                         <p>{errors.username}</p>
                     )}
                 </label>
-                <label>
+                {/* <label htmlFor="email">
                     Email:
-                    <Field
+                    <Field className="field"
                      type="text"
                      id="email"
                      name="email"
+                     placeholder="Email"
                     />
                     {touched.email && ErrorMessage.name &&(
                         <p>{errors.email}</p>
                     )}
-                </label>
-                <label>
+                </label> */}
+                <label htmlFor="password">
                     Password:
-                    <Field
-                     type="text"
+                    <Field className="field"
+                     type="password"
                      id="password"
                      name="password"
+                     placeholder="Password"
                     />
                     {touched.password && ErrorMessage.name &&(
                         <p>{errors.password}</p>
                     )}
                 </label>
-                <label>
-                    Confirm Password
-                    <Field
-                     type="text"
-                     id="confirmPassword"
-                     name="confirmPassword"
-                    />
-                    {touched.confirmPassword && ErrorMessage.name &&(
-                        <p>{errors.confirmPassword}</p>
-                    )}
-                </label>
                 <button type="submit">Register</button>
             </Form>
-        </FormContainer>
+        </div>
     )
 }
 
 const FormikForm = withFormik({
-    mapPropsToValues({ firstName, lastName, username, email, password, confirmPassword }){
+    mapPropsToValues({ username, password }){
         return {
-            firstName: firstName || '', 
-            lastName: lastName || '',
+            // firstName: firstName || '', 
+            // lastName: lastName || '',
             username: username || '',
-            email: email || '',
+            // email: email || '',
             password: password || '',
-            confirmPassword: confirmPassword || '',
         }
     },
     validationSchema: Yup.object().shape({
-        firstName: Yup.string().required(),
-        lastName: Yup.string().required(),
-        username: Yup.string().required(),
-        email: Yup.string().required(),
-        password: Yup.string().required(),
-        confirmPassword: Yup.string().required()
+        // firstName: Yup.string().required('*'),
+        // lastName: Yup.string().required('*'),
+        username: Yup.string().required('*'),
+        // email: Yup.string().required('*'),
+        password: Yup.string().required('*').min(6),
     }),
     handleSubmit(values, { setStatus }) {
         console.log('submitting', values);
-        axios.post('/api/auth/register', values)
+        axiosWithAuth()
+        .post('/api/auth/register', values)
         .then(res => {
             console.log('response:', res)
             setStatus(res)
