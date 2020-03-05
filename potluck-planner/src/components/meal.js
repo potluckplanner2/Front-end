@@ -7,7 +7,7 @@ import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 function Meal(props) {
 
-    const [meal, setMeal] = useState([]);
+    const [meal, setMeal] = useState(null);
     const [isUpdating, setIsUpdating] = useState(false);
     const match = useRouteMatch();
 
@@ -22,9 +22,16 @@ function Meal(props) {
         fetchMeal(match.params.id);
     }, [match.params.id]);
 
-    const handleUpdate = e => {
-        e.preventDefault();
-        props.history.push(`/api/potluck/${meal.potluck.id}`);
+    const handleUpdate = potluck => {
+       
+        axiosWithAuth()
+            .put(`/api/potluck/${meal.potluck.id}`, potluck)
+            .then(res => {
+                console.log('handleupdate res', res)
+                props.history.push(`/potlucks`);
+            })
+            .catch(err => console.log('Error handling update', err)) 
+        
     };
     
     const handleDelete = e => {
@@ -39,6 +46,12 @@ function Meal(props) {
     };
         console.log('Meal: inspect this to find the guests array and items array', meal);
 
+    if(meal === null) {
+        return (
+            <p>Meal still loading...</p>
+        )
+    }
+
     let renderedComponent;
     if(isUpdating === true) {
         renderedComponent = <MealForm handleSubmit={handleUpdate} initialPotluck={meal.potluck} />;
@@ -47,18 +60,34 @@ function Meal(props) {
     }
 
     const renderedGuests = () => {
-        if(meal.guests.length < 0) {
+
+        if(meal.guests.length === 0) {
             return(
                 <p>no guests have been added</p>
             )
-        }else {
-            meal.guests.map(guest => {
+        } else {
+            const mapGuest = guest => {
                 return( 
-                <p>{guest}</p>
+                <p>{guest.guest_name}</p>
                 )
-            })
+            }
+           return meal.guests.map(mapGuest);
         }
+
     }
+
+    // const dce = () => {
+    //     const grace = () => {
+    //         return 2;
+    //     }
+    //     return grace()
+    // }
+
+    // console.log('dce', dce())
+
+
+    // console.log('wah', renderedGuests());
+
     return (
         <div className='edit-container'>
             {renderedComponent}
