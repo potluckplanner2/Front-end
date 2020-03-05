@@ -1,12 +1,12 @@
 import React from 'react';
 
-function ProfileCard({data}) {
+function ProfileCard({firstName, lastName, username, email}) {
     return(
         <div>
             <h1>Profile</h1>
-            <h2>{data.firstName} {data.lastName}</h2>
-            <h3>{data.username}</h3>
-            <h4>{data.email}</h4>
+            <h2>{firstName} {lastName}</h2>
+            <h3>{username}</h3>
+            <h4>{email}</h4>
         </div>
     )
 }
