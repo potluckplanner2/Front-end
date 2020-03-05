@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useRouteMatch } from 'react-router-dom';
 
 import MealCard from './mealCard';
@@ -47,16 +46,25 @@ function Meal(props) {
         renderedComponent = <MealCard {...meal.potluck} />
     }
 
+    const renderedGuests = () => {
+        if(meal.guests.length < 0) {
+            return(
+                <p>no guests have been added</p>
+            )
+        }else {
+            meal.guests.map(guest => {
+                return( 
+                <p>{guest}</p>
+                )
+            })
+        }
+    }
     return (
         <div className='edit-container'>
             {renderedComponent}
             <div className='guests-container'>
                 {/* use an array method to display the guests here. Inspect the console.log above to get the path for the guests array */}
-                {meal.guests.map(guest => {
-                    return(
-                    <p>{guest}</p>
-                    )
-                })}
+                {renderedGuests()}
             </div>
             <div className='items-container'>
                 {/* use an array method to display the items here. Inspect the console.log above to get the path for the items array */}
@@ -70,6 +78,6 @@ function Meal(props) {
         </div>
     );
     
-}
+};
 
 export default Meal;
