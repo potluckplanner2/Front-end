@@ -7,12 +7,12 @@ import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 function Meal(props) {
 
-    const [meal, setMeal] = useState(null);
+    const [meal, setMeal] = useState([]);
     const match = useRouteMatch();
 
     const fetchMeal = id => {
         axiosWithAuth()
-            .get(`/api/potlucks/${id} `)
+            .get(`/api/potluck/${id} `)
             .then(res => setMeal(res.data))
             .catch(err => console.log(err.response));
     };
@@ -23,24 +23,30 @@ function Meal(props) {
 
     const handleUpdate = e => {
         e.preventDefault();
-        props.history.push(`/api/potluck/${meal.id}`);
+        props.history.push(`/api/potluck/${meal.potluck.id}`);
     };
     
     const handleDelete = e => {
         e.preventDefault();
         axiosWithAuth()
-            .delete(`/api/potluck/${meal.id}`)
+            .delete(`/api/potluck/${meal.potluck.id}`)
             .then(res=> {
-                
                 props.history.push('/potlucks')
             })
             .catch(err => console.log(err))
     
     };
-
+        console.log('Meal: inspect this to find the guests array and items array', meal);
     return (
         <div className='edit-container'>
-            <MealCard meal={meal} />
+            <MealCard {...meal.potluck} />
+            <div className='guests-container'>
+                {/* use an array method to display the guests here. Inspect the console.log above to get the path for the guests array */}
+                 
+            </div>
+            <div className='items-container'>
+                {/* use an array method to display the items here. Inspect the console.log above to get the path for the items array */}
+            </div>
             <button className='update-button' onClick={handleUpdate}>
                 Edit
             </button>
