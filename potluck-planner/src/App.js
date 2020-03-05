@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 
 import Nav from './components/nav';
 import PrivateRoute from './utils/privateRoute';
@@ -12,22 +12,25 @@ import Meal from './components/meal';
 import { MealForm } from './components/mealForm';
 import { axiosWithAuth } from './utils/axiosWithAuth';
 
+const initialPotluck = {
+  title: '',
+  date: '',
+  description: '',
+  items: ['hotdogs','cake'],
+  guests: ['adam', 'adrian']
+}
 
-function App() {
-  // const [mealList, setMealList] = useState([]);
-
-  // const getMealList = () => {
-  //   axiosWithAuth()
-  //     .get('/api/potlucks')
-  //     .then(res => console.log('this is res', res))
-  //     .catch(err => console.log(err.response));
-  // };
-
-  // useEffect(() => {
-  //   getMealList();
-  // }, []);
-
-  // console.log('mealList', mealList);
+function App(props) {
+  
+  const handleSubmit = (meal) => {
+    axiosWithAuth()
+        .post('/api/potluck', meal)
+        .then(res => {
+            console.log('mealForm res', res);
+            props.history.push(`/api/potlucks/${res.data.potluckID}`)
+        })
+        .catch(err => console.log(err))
+  }
 
   return (
     <div className="App">
@@ -36,14 +39,15 @@ function App() {
         <Route exact path='/potlucks/profile' component={Profile}/>
         <Route exact path='/potlucks' component={Dashboard} />
         <Route exact path="/api/auth/register" component={Register} />
-        <Route exact path="/api/login" component={Login} />
+        <Route exact path="/api/auth/login" component={Login} />
       </Switch>
-      <Route path="/api/auth/register" component={Register}/>
-      <Route path="/api/auth/login" component={Login}/>
+      {/* <Route path="/api/auth/register" component={Register}/>
+      <Route path="/api/auth/login" component={Login}/> */}
       <Route path="/api/potlucks/:id" render={props => <Meal {...props} />} />
-      <Route path="/api/potluck" render={props => <MealForm {...props} />} />
+      {/* /api/potluck/${meal.potluck.id} */}
+      <Route path="/api/potluck" render={props => <MealForm {...props} initialPotluck={initialPotluck} handleSubmit={handleSubmit} />} />
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);

@@ -2,17 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const initialPotluck = {
-    title: '',
-    date: '',
-    time: '',
-    location: '',
-    description: '',
-    dishes: [],
-    guests: []
-}
 
-export const MealForm = props => {
+
+export const MealForm = ({handleSubmit, initialPotluck}) => {
    const [meal, setMeal] = useState(initialPotluck);
 
     const handleChanges = e => {
@@ -25,43 +17,57 @@ export const MealForm = props => {
         });
     };
 
-    const handleSubmit = e => {
+    const formSubmit = e => {
         e.preventDefault();
-
-        axiosWithAuth()
-            .post('/api/potluck', meal)
-            .then(res => {
-                console.log('mealForm res', res);
-                props.history.push(`/api/potlucks/${res.data.potluckID}`)
-            })
-            .catch(err => console.log(err))
-    }
-
+        
+        return (    
+            handleSubmit(meal)
+        );
+        
+    } ;
+  
+        // console.log('meal', meal);
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={formSubmit}>
             <input 
                 type='text'
                 name='title'
                 onChange={handleChanges}
                 placeholder='Title'
-                value={props.title}
+                value={meal.title}
             />
 
             <input 
                 type='text'
                 name='date'
                 onChange={handleChanges}
-                placeholder='Date'
-                value={props.date}
+                placeholder='YYYY/MM/DD'
+                value={meal.date}
             />
 
-            <input 
-                type='textfield'
+            <textarea 
+                type='text'
                 name='description'
                 onChange={handleChanges}
-                placeholder='Summary'
-                value={props.description}
+                placeholder='Description'
+                value={meal.description}
             />
+
+            {/* <textarea 
+                type='text'
+                name='items'
+                onChange={handleChanges}
+                placeholder="Separate dishes with a ',' "
+                value={meal.items}
+            />
+
+            <textarea 
+                type='text'
+                name='guests'
+                onChange={handleChanges}
+                placeholder="Separate guests with a ',' "
+                value={meal.guests}
+            /> */}
             <button>Submit!</button>
         </form>    
 
