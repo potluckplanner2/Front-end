@@ -17,7 +17,7 @@ const initialPotluck = {
   date: '',
   description: '',
   items: ['hotdogs','cake'],
-  guests: ['adam', 'adrian']
+  guests: ['adam', 'adrian', 'aldair']
 }
 
 function App(props) {
@@ -43,7 +43,7 @@ function App(props) {
       </Switch>
       {/* <Route path="/api/auth/register" component={Register}/>
       <Route path="/api/auth/login" component={Login}/> */}
-      <Route path="/api/potlucks/:id" render={props => <Meal {...props} />} />
+      <Route path="/api/potlucks/:id" render={props => <Meal {...props}  />} />
       {/* /api/potluck/${meal.potluck.id} */}
       <Route path="/api/potluck" render={props => <MealForm {...props} initialPotluck={initialPotluck} handleSubmit={handleSubmit} />} />
     </div>
