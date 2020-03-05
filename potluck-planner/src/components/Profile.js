@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-<<<<<<< HEAD
-import React, {useState, useEffect } from "react"
-=======
 import ProfileCard from './ProfileCard';
->>>>>>> e9f8f7cc00576def8bf35ebec5aa0af4576f44ba
 
 function Profile() {
    const [data, setData] = useState([]);
