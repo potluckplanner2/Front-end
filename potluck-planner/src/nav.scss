@@ -26,10 +26,11 @@
             font-family: "Lobster";
             font-size: 1.4rem;
             text-decoration: none;
+            transition: .2s ease-in-out;
             &:hover {
                 text-shadow: 3px 3px rgba(0, 0, 0, .8);
                 font-size: 1.6rem;
-                transition: .2s;
+                transition: .2s ease-in-out;
             }
         }
     }

@@ -42,7 +42,11 @@ function Meal(props) {
             <MealCard {...meal.potluck} />
             <div className='guests-container'>
                 {/* use an array method to display the guests here. Inspect the console.log above to get the path for the guests array */}
-                 
+                {meal.guests.map(guest => {
+                    return(
+                    <p>{guest}</p>
+                    )
+                })}
             </div>
             <div className='items-container'>
                 {/* use an array method to display the items here. Inspect the console.log above to get the path for the items array */}
