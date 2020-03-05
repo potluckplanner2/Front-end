@@ -3,11 +3,13 @@ import axios from 'axios';
 import { useRouteMatch } from 'react-router-dom';
 
 import MealCard from './mealCard';
+import {MealForm} from './mealForm';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 function Meal(props) {
 
     const [meal, setMeal] = useState([]);
+    const [isUpdating, setIsUpdating] = useState(false);
     const match = useRouteMatch();
 
     const fetchMeal = id => {
@@ -37,9 +39,17 @@ function Meal(props) {
     
     };
         console.log('Meal: inspect this to find the guests array and items array', meal);
+
+    let renderedComponent;
+    if(isUpdating === true) {
+        renderedComponent = <MealForm handleSubmit={handleUpdate} initialPotluck={meal.potluck} />;
+    } else {
+        renderedComponent = <MealCard {...meal.potluck} />
+    }
+
     return (
         <div className='edit-container'>
-            <MealCard {...meal.potluck} />
+            {renderedComponent}
             <div className='guests-container'>
                 {/* use an array method to display the guests here. Inspect the console.log above to get the path for the guests array */}
                 {meal.guests.map(guest => {
@@ -51,7 +61,7 @@ function Meal(props) {
             <div className='items-container'>
                 {/* use an array method to display the items here. Inspect the console.log above to get the path for the items array */}
             </div>
-            <button className='update-button' onClick={handleUpdate}>
+            <button className='update-button' onClick={() => setIsUpdating(true)}>
                 Edit
             </button>
             <button className='delete-button' onClick={handleDelete}>
