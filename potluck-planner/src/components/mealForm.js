@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import '../login.scss';
+import styled from "styled-components"
 
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+
+const MainDiv = styled.div`
+display: flex;
+flex-direction: column;
+margin-top: 5%;
+align-items: center;
+`
+const Button1 = styled.button`
+width: 15%;
+border: 2px solid #FFF5D1;
+
+`
 
 
 
@@ -28,8 +42,11 @@ export const MealForm = ({handleSubmit, initialPotluck}) => {
   
         // console.log('meal', meal);
     return (
+        
         <form onSubmit={formSubmit}>
-            <input 
+            <MainDiv>
+                <h1>Create a Potluck:</h1>
+            <input className = "fieldcreate"
                 type='text'
                 name='title'
                 onChange={handleChanges}
@@ -37,15 +54,16 @@ export const MealForm = ({handleSubmit, initialPotluck}) => {
                 value={meal.title}
             />
 
-            <input 
-                type='date'
+
+            <input className = "fieldcreate"
+                type='text'
                 name='date'
                 onChange={handleChanges}
                 placeholder='YYYY/MM/DD'
                 value={meal.date}
             />
 
-            <textarea 
+            <textarea className = "fieldcreate"
                 type='text'
                 name='description'
                 onChange={handleChanges}
@@ -68,15 +86,10 @@ export const MealForm = ({handleSubmit, initialPotluck}) => {
                 placeholder="Separate guests with a ',' "
                 value={meal.guests}
             /> */}
-            <button>Submit!</button>
-        </form>    
-
-        // const items = potluck.items;
-        // const guest = potluck.guests;
-        // const title = potluck.title;
-        // const description = potluck.description;
-        // const date = potluck.date;
-
+            <Button1>Submit!</Button1>
+            </MainDiv>
+        </form>   
+         
     );
     
 

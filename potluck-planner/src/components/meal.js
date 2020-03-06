@@ -4,6 +4,7 @@ import { useRouteMatch } from 'react-router-dom';
 import MealCard from './mealCard';
 import {MealForm} from './mealForm';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import '../../src/meal.scss';
 
 function Meal(props) {
 
@@ -45,6 +46,16 @@ function Meal(props) {
     
     };
         console.log('Meal: inspect this to find the guests array and items array', meal);
+        if(meal === null ) {
+            return (<p>"meal is loading"</p>)
+        }
+    
+
+    if(meal === null) {
+        return(
+            <p>meal loading...</p>
+        )
+    }
 
     if(meal === null) {
         return (
@@ -59,19 +70,38 @@ function Meal(props) {
         renderedComponent = <MealCard {...meal.potluck} />
     }
 
+
+    const renderItem = () => {
+        if (meal.items.length === 0) {
+            return (<p>No items have been added</p>)
+        }else{
+            const mapItem = item => {
+            return( 
+            <p>{item.items}</p>
+            )
+        }
+       return meal.items.map(mapItem);
+        }}
+    
+    
+
+
     const renderedGuests = () => {
 
         if(meal.guests.length === 0) {
             return(
                 <p>no guests have been added</p>
             )
-        } else {
+
+        }else {
+
             const mapGuest = guest => {
                 return( 
                 <p>{guest.guest_name}</p>
                 )
             }
            return meal.guests.map(mapGuest);
+
         }
 
     }
@@ -90,35 +120,34 @@ function Meal(props) {
        return meal.items.map(mapItem);
         }
     }
-
-    // const dce = () => {
-    //     const grace = () => {
-    //         return 2;
-    //     }
-    //     return grace()
-    // }
-
-    // console.log('dce', dce())
-
-
-    // console.log('wah', renderedGuests());
-
+    
+    
     return (
         <div className='edit-container'>
-            {renderedComponent}
+            <div className='rendered-component'>
+                {renderedComponent}
+            </div>
             <div className='guests-container'>
                 {/* use an array method to display the guests here. Inspect the console.log above to get the path for the guests array */}
                 {renderedGuests()}
             </div>
             <div className='items-container'>
                 {/* use an array method to display the items here. Inspect the console.log above to get the path for the items array */}
+              {renderItem()}
             </div>
-            <button className='update-button' onClick={() => setIsUpdating(true)}>
-                Edit
-            </button>
-            <button className='delete-button' onClick={handleDelete}>
-                Delete
-            </button>
+            
+            <div className='buttons-container'>
+                <div className='update-button-container'>
+                    <button className='update-button' onClick={() => setIsUpdating(true)}>
+                        Edit
+                    </button>
+                </div>
+                <div className='delete-button-container'>
+                    <button className='delete-button' onClick={handleDelete}>
+                        Delete
+                    </button>
+                </div>
+            </div>
         </div>
     );
     

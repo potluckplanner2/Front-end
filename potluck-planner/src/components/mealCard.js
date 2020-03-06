@@ -36,7 +36,6 @@ const MealCard = (props) => {
             <div className='card-description'>
                 <p>{props.description}</p>
             </div>
-        
         </div>
     )
         

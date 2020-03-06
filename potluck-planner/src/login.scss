@@ -1,26 +1,18 @@
 body {
     background-color: #241E4E;
 
-    button {
-        width: 60%;
-        color: #FFF5D1;
-        border-radius: 4px;
-        padding: 6px 0;
-        border: none;
-        background-color:  #241E4E;
-        margin: 6% 0 4%;
-        font-family: "Lobster";
-        font-size: 1.4em;
-        &:focus {
-            outline: none;
+
+ .a {
+            width: 100%;
+            color: #241E4E;
+            text-decoration: none;
+            margin: 0 0 2%;
+            transition: .2s;
+            &:hover {
+                color: rgb(238, 184, 67);
+                transition: .2s;
+            }
         }
-        &:hover {
-            background-color: rgb(62, 71, 145);
-            text-shadow: 4px 4px rgba(0, 0, 0, .5);
-            box-shadow: 4px 4px rgba(0, 0, 0, .8);
-            transition: .3s;
-        }
-    }
 }
      
      
@@ -28,7 +20,7 @@ body {
      .field {
             width: 100%;
             padding: 10px 8px;
-            margin: 8px 0 8px 10px;
+            margin: 8px 0 8px 0px;
             display: inline-block;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -39,3 +31,19 @@ body {
                 outline: none;
             }
         }
+         
+     .fieldcreate {
+        width: 30%;
+        height: 10%;
+        padding: 10px 8px;
+        margin: 8px 0 8px 0px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #FFF5D1;
+        color: #241E4E;
+        box-sizing: border-box;
+        &:focus {
+            outline: none;
+        }
+    }
