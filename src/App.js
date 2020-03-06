@@ -45,7 +45,7 @@ function App(props) {
       <Route path="/api/auth/login" component={Login}/> */}
       <Route path="/Potluck/:id" render={props => <Meal {...props}  />} />
       {/* /api/potluck/${meal.potluck.id} */}
-      <Route path="/Create" render={props => <MealForm {...props} initialPotluck={initialPotluck} handleSubmit={handleSubmit} />} />
+      <PrivateRoute path="/Create" render={props => <MealForm {...props} initialPotluck={initialPotluck} handleSubmit={handleSubmit} />} />
     </div>
   );
 }
