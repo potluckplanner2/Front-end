@@ -8,7 +8,7 @@ import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 function Meal(props) {
 
-    const [meal, setMeal] = useState([]);
+    const [meal, setMeal] = useState(null);
     const [isUpdating, setIsUpdating] = useState(false);
     const match = useRouteMatch();
 
@@ -39,6 +39,10 @@ function Meal(props) {
     
     };
         console.log('Meal: inspect this to find the guests array and items array', meal);
+        if(meal === null ) {
+            return (<p>"meal is loading"</p>)
+        }
+    
 
     let renderedComponent;
     if(isUpdating === true) {
@@ -47,19 +51,34 @@ function Meal(props) {
         renderedComponent = <MealCard {...meal.potluck} />
     }
 
+    const renderItem = () => {
+        if (meal.items.length === 0) {
+            return (<p>No items have been added</p>)
+        }else{
+            const mapItem = item => {
+            return( 
+            <p>{item.items}</p>
+            )
+        }
+       return meal.items.map(mapItem);
+        }}
+    
+    
+
     return (
         <div className='edit-container'>
             {renderedComponent}
             <div className='guests-container'>
                 {/* use an array method to display the guests here. Inspect the console.log above to get the path for the guests array */}
-                {meal.guests.map(guest => {
+                {/* {meal.guests.map(guest => {
                     return(
                     <p>{guest}</p>
                     )
-                })}
+                })} */}
             </div>
             <div className='items-container'>
                 {/* use an array method to display the items here. Inspect the console.log above to get the path for the items array */}
+              {renderItem()}
             </div>
             <button className='update-button' onClick={() => setIsUpdating(true)}>
                 Edit
