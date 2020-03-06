@@ -27,7 +27,7 @@ function App(props) {
         .post('/api/potluck', meal)
         .then(res => {
             console.log('mealForm res', res);
-            props.history.push(`/api/potlucks/${res.data.potluckID}`)
+            props.history.push('/Dashboard')
         })
         .catch(err => console.log(err))
   }
@@ -36,16 +36,16 @@ function App(props) {
     <div className="App">
       <Nav />
       <Switch>
-        <Route exact path='/potlucks/profile' component={Profile}/>
-        <Route exact path='/potlucks' component={Dashboard} />
-        <Route exact path="/api/auth/register" component={Register} />
-        <Route exact path="/api/auth/login" component={Login} />
+        <Route exact path='/Profile' component={Profile}/>
+        <PrivateRoute exact path='/Dashboard' component={Dashboard} />
+        <Route exact path="/Register" component={Register} />
+        <Route exact path="/login" component={Login} />
       </Switch>
       {/* <Route path="/api/auth/register" component={Register}/>
       <Route path="/api/auth/login" component={Login}/> */}
-      <Route path="/api/potlucks/:id" render={props => <Meal {...props}  />} />
+      <Route path="/Potluck/:id" render={props => <Meal {...props}  />} />
       {/* /api/potluck/${meal.potluck.id} */}
-      <Route path="/api/potluck" render={props => <MealForm {...props} initialPotluck={initialPotluck} handleSubmit={handleSubmit} />} />
+      <Route path="/Create" render={props => <MealForm {...props} initialPotluck={initialPotluck} handleSubmit={handleSubmit} />} />
     </div>
   );
 }

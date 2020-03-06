@@ -9,11 +9,9 @@ import '../login.scss';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 const NewDiv = styled.div`
-padding: 100px;
 display: flex;
 width: 300px;
-margin: 0 auto;
-margin-top: 100px;
+margin: 6% auto 4%;
 flex-direction: column;
 background: #960200;
 color: #FFF5D1;
@@ -38,16 +36,19 @@ display: flex;
 flex-direction: column;
 margin: 0;
 `
+const Newh2 = styled.h2`
+font-size: 2.6rem;
+`
+
 
 const User = ({ values, errors, status, touched }) => {
-    
     
     
 return (
     
       <TheBack>
     <NewDiv className="login">
-        <h2>LogIn</h2>
+        <Newh2>LogIn</Newh2>
       <Form>
 
         <label>
@@ -78,7 +79,9 @@ return (
         </label>
         <br></br>
         <br></br>
-        <button type = "submit">Submit</button>
+        <button className = "login-button" type = "submit">Submit</button>
+        <br></br>
+        <p>You don't have an account?<a href= "./register" className="a"> Sign up here!</a></p>
         
 
       </Form>   
