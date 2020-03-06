@@ -38,7 +38,7 @@ export const MealForm = ({handleSubmit, initialPotluck}) => {
             />
 
             <input 
-                type='text'
+                type='date'
                 name='date'
                 onChange={handleChanges}
                 placeholder='YYYY/MM/DD'

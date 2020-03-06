@@ -27,7 +27,7 @@ function App(props) {
         .post('/api/potluck', meal)
         .then(res => {
             console.log('mealForm res', res);
-            props.history.push(`/Potluck/:id`)
+            props.history.push('/Dashboard')
         })
         .catch(err => console.log(err))
   }
