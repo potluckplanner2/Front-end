@@ -4,10 +4,11 @@ import { useRouteMatch } from 'react-router-dom';
 import MealCard from './mealCard';
 import {MealForm} from './mealForm';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import '../../src/meal.scss';
 
 function Meal(props) {
 
-    const [meal, setMeal] = useState([]);
+    const [meal, setMeal] = useState(null);
     const [isUpdating, setIsUpdating] = useState(false);
     const match = useRouteMatch();
 
@@ -39,6 +40,12 @@ function Meal(props) {
     };
         console.log('Meal: inspect this to find the guests array and items array', meal);
 
+    if(meal === null) {
+        return(
+            <p>meal loading...</p>
+        )
+    }
+
     let renderedComponent;
     if(isUpdating === true) {
         renderedComponent = <MealForm handleSubmit={handleUpdate} initialPotluck={meal.potluck} />;
@@ -47,21 +54,30 @@ function Meal(props) {
     }
 
     const renderedGuests = () => {
-        if(meal.guests.length < 0) {
+        if(meal.guests.length === 0) {
             return(
                 <p>no guests have been added</p>
             )
         }else {
-            meal.guests.map(guest => {
+            // meal.guests.map(guest => {
+            //     return( 
+            //     <p>{guest.guest_name}</p>
+            //     )
+            // })
+
+            const mapGuest = guest => {
                 return( 
-                <p>{guest}</p>
+                <p>{guest.guest_name}</p>
                 )
-            })
+            }
+           return meal.guests.map(mapGuest);
         }
     }
     return (
         <div className='edit-container'>
-            {renderedComponent}
+            <div className='rendered-component'>
+                {renderedComponent}
+            </div>
             <div className='guests-container'>
                 {/* use an array method to display the guests here. Inspect the console.log above to get the path for the guests array */}
                 {renderedGuests()}
@@ -69,12 +85,19 @@ function Meal(props) {
             <div className='items-container'>
                 {/* use an array method to display the items here. Inspect the console.log above to get the path for the items array */}
             </div>
-            <button className='update-button' onClick={() => setIsUpdating(true)}>
-                Edit
-            </button>
-            <button className='delete-button' onClick={handleDelete}>
-                Delete
-            </button>
+            
+            <div className='buttons-container'>
+                <div className='update-button-container'>
+                    <button className='update-button' onClick={() => setIsUpdating(true)}>
+                        Edit
+                    </button>
+                </div>
+                <div className='delete-button-container'>
+                    <button className='delete-button' onClick={handleDelete}>
+                        Delete
+                    </button>
+                </div>
+            </div>
         </div>
     );
     

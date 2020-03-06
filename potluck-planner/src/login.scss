@@ -1,26 +1,5 @@
 body {
     background-color: #241E4E;
-
-    button {
-        width: 60%;
-        color: #FFF5D1;
-        border-radius: 4px;
-        padding: 6px 0;
-        border: none;
-        background-color:  #241E4E;
-        margin: 6% 0 4%;
-        font-family: "Lobster";
-        font-size: 1.4em;
-        &:focus {
-            outline: none;
-        }
-        &:hover {
-            background-color: rgb(62, 71, 145);
-            text-shadow: 4px 4px rgba(0, 0, 0, .5);
-            box-shadow: 4px 4px rgba(0, 0, 0, .8);
-            transition: .3s;
-        }
-    }
 }
      
      

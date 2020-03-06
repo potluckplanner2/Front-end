@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-dom';
 import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
@@ -77,7 +78,8 @@ function Register({values, errors, touched, status}) {
                         <p>{errors.password}</p>
                     )}
                 </label>
-                <button type="submit">Register</button>
+                <button type="submit" className='register-button'>Register</button>
+                <a href="/api/auth/login">Login</a>
             </Form>
         </div>
     )
