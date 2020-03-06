@@ -39,6 +39,10 @@ function Meal(props) {
     
     };
         console.log('Meal: inspect this to find the guests array and items array', meal);
+        if(meal === null ) {
+            return (<p>"meal is loading"</p>)
+        }
+    
 
     if(meal === null) {
         return(
@@ -52,6 +56,22 @@ function Meal(props) {
     } else {
         renderedComponent = <MealCard {...meal.potluck} />
     }
+
+
+    const renderItem = () => {
+        if (meal.items.length === 0) {
+            return (<p>No items have been added</p>)
+        }else{
+            const mapItem = item => {
+            return( 
+            <p>{item.items}</p>
+            )
+        }
+       return meal.items.map(mapItem);
+        }}
+    
+    
+
 
     const renderedGuests = () => {
         if(meal.guests.length === 0) {
@@ -73,6 +93,7 @@ function Meal(props) {
            return meal.guests.map(mapGuest);
         }
     }
+
     return (
         <div className='edit-container'>
             <div className='rendered-component'>
@@ -84,6 +105,7 @@ function Meal(props) {
             </div>
             <div className='items-container'>
                 {/* use an array method to display the items here. Inspect the console.log above to get the path for the items array */}
+              {renderItem()}
             </div>
             
             <div className='buttons-container'>
