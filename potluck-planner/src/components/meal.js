@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useRouteMatch } from 'react-router-dom';
 
 import MealCard from './mealCard';
 import {MealForm} from './mealForm';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import '../../src/meal.scss';
 
 function Meal(props) {
 
@@ -44,12 +44,19 @@ function Meal(props) {
         }
     
 
+    if(meal === null) {
+        return(
+            <p>meal loading...</p>
+        )
+    }
+
     let renderedComponent;
     if(isUpdating === true) {
         renderedComponent = <MealForm handleSubmit={handleUpdate} initialPotluck={meal.potluck} />;
     } else {
         renderedComponent = <MealCard {...meal.potluck} />
     }
+
 
     const renderItem = () => {
         if (meal.items.length === 0) {
@@ -65,30 +72,57 @@ function Meal(props) {
     
     
 
+
+    const renderedGuests = () => {
+        if(meal.guests.length === 0) {
+            return(
+                <p>no guests have been added</p>
+            )
+        }else {
+            // meal.guests.map(guest => {
+            //     return( 
+            //     <p>{guest.guest_name}</p>
+            //     )
+            // })
+
+            const mapGuest = guest => {
+                return( 
+                <p>{guest.guest_name}</p>
+                )
+            }
+           return meal.guests.map(mapGuest);
+        }
+    }
+
     return (
         <div className='edit-container'>
-            {renderedComponent}
+            <div className='rendered-component'>
+                {renderedComponent}
+            </div>
             <div className='guests-container'>
                 {/* use an array method to display the guests here. Inspect the console.log above to get the path for the guests array */}
-                {/* {meal.guests.map(guest => {
-                    return(
-                    <p>{guest}</p>
-                    )
-                })} */}
+                {renderedGuests()}
             </div>
             <div className='items-container'>
                 {/* use an array method to display the items here. Inspect the console.log above to get the path for the items array */}
               {renderItem()}
             </div>
-            <button className='update-button' onClick={() => setIsUpdating(true)}>
-                Edit
-            </button>
-            <button className='delete-button' onClick={handleDelete}>
-                Delete
-            </button>
+            
+            <div className='buttons-container'>
+                <div className='update-button-container'>
+                    <button className='update-button' onClick={() => setIsUpdating(true)}>
+                        Edit
+                    </button>
+                </div>
+                <div className='delete-button-container'>
+                    <button className='delete-button' onClick={handleDelete}>
+                        Delete
+                    </button>
+                </div>
+            </div>
         </div>
     );
     
-}
+};
 
 export default Meal;
