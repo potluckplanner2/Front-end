@@ -19,7 +19,19 @@ border: 2px solid #FFF5D1;
 
 
 export const MealForm = ({handleSubmit, initialPotluck}) => {
-   const [meal, setMeal] = useState(initialPotluck);
+   const formPotluck = {...initialPotluck};
+   console.log("formPotluck", formPotluck);
+
+   if (formPotluck.items != null) {
+       formPotluck.items = formPotluck.items.toString();
+   }
+   
+   if (formPotluck.guests != null) {
+       formPotluck.guests = formPotluck.guests.toString();
+   }
+   
+
+   const [meal, setMeal] = useState(formPotluck);
 
     const handleChanges = e => {
         e.persist();
@@ -34,13 +46,19 @@ export const MealForm = ({handleSubmit, initialPotluck}) => {
     const formSubmit = e => {
         e.preventDefault();
         
+
+        if (meal.items != null) {
+            meal.items = meal.items.split(',');
+            meal.guests = meal.guests.split(',');
+        }
+
         return (    
             handleSubmit(meal)
         );
         
     } ;
   
-        // console.log('meal', meal);
+    console.log('meal', meal);
     return (
         
         <form onSubmit={formSubmit}>
@@ -71,21 +89,28 @@ export const MealForm = ({handleSubmit, initialPotluck}) => {
                 value={meal.description}
             />
 
-            {/* <textarea 
+           {meal.items != null ? (
+               <textarea 
                 type='text'
                 name='items'
                 onChange={handleChanges}
                 placeholder="Separate dishes with a ',' "
                 value={meal.items}
-            />
+            />) : (
+                null
+            )}
 
-            <textarea 
+            {meal.guests != null ? (
+                <textarea 
                 type='text'
                 name='guests'
                 onChange={handleChanges}
                 placeholder="Separate guests with a ',' "
                 value={meal.guests}
-            /> */}
+            />) : (
+                null
+            )}
+            
             <Button1>Submit!</Button1>
             </MainDiv>
         </form>   

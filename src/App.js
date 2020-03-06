@@ -23,6 +23,10 @@ const initialPotluck = {
 function App(props) {
   
   const handleSubmit = (meal) => {
+
+    console.log('this is meal in app', meal);
+    
+
     axiosWithAuth()
         .post('/api/potluck', meal)
         .then(res => {
@@ -40,12 +44,13 @@ function App(props) {
         <PrivateRoute exact path='/Dashboard' component={Dashboard} />
         <Route exact path="/Register" component={Register} />
         <Route exact path="/login" component={Login} />
-      </Switch>
-      {/* <Route path="/api/auth/register" component={Register}/>
-      <Route path="/api/auth/login" component={Login}/> */}
-      <Route path="/Potluck/:id" render={props => <Meal {...props}  />} />
+
+        <Route path="/Potluck/:id" render={props => <Meal {...props}  />} />
       {/* /api/potluck/${meal.potluck.id} */}
       <PrivateRoute path="/Create" render={props => <MealForm {...props} initialPotluck={initialPotluck} handleSubmit={handleSubmit} />} />
+      </Switch>
+      
+      
     </div>
   );
 }

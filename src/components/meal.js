@@ -65,6 +65,11 @@ function Meal(props) {
 
     let renderedComponent;
     if(isUpdating === true) {
+        // const items = meal.items.map(obj => obj.items);
+        // const guests = meal.guests.map(obj => obj.guest_name);
+        // const editPotluck = {...meal.potluck, items, guests};
+       
+       
         renderedComponent = <MealForm handleSubmit={handleUpdate} initialPotluck={meal.potluck} />;
     } else {
         renderedComponent = <MealCard {...meal.potluck} />
@@ -78,7 +83,7 @@ function Meal(props) {
                 <p>no guests have been added</p>
             )
 
-        }else {
+        } else {
 
             const mapGuest = guest => {
                 return( 
