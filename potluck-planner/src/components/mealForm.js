@@ -54,6 +54,7 @@ export const MealForm = ({handleSubmit, initialPotluck}) => {
                 value={meal.title}
             />
 
+
             <input className = "fieldcreate"
                 type='text'
                 name='date'
@@ -89,13 +90,6 @@ export const MealForm = ({handleSubmit, initialPotluck}) => {
             </MainDiv>
         </form>   
          
-
-        // const items = potluck.items;
-        // const guest = potluck.guests;
-        // const title = potluck.title;
-        // const description = potluck.description;
-        // const date = potluck.date;
-
     );
     
 

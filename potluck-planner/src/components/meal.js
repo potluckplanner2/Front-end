@@ -23,9 +23,16 @@ function Meal(props) {
         fetchMeal(match.params.id);
     }, [match.params.id]);
 
-    const handleUpdate = e => {
-        e.preventDefault();
-        props.history.push(`/api/potluck/${meal.potluck.id}`);
+    const handleUpdate = potluck => {
+       
+        axiosWithAuth()
+            .put(`/api/potluck/${meal.potluck.id}`, potluck)
+            .then(res => {
+                console.log('handleupdate res', res)
+                props.history.push('/Dashboard');
+            })
+            .catch(err => console.log('Error handling update', err)) 
+        
     };
     
     const handleDelete = e => {
@@ -33,7 +40,7 @@ function Meal(props) {
         axiosWithAuth()
             .delete(`/api/potluck/${meal.potluck.id}`)
             .then(res=> {
-                props.history.push('/potlucks')
+                props.history.push('/Dashboard')
             })
             .catch(err => console.log(err))
     
@@ -47,6 +54,12 @@ function Meal(props) {
     if(meal === null) {
         return(
             <p>meal loading...</p>
+        )
+    }
+
+    if(meal === null) {
+        return (
+            <p>Meal still loading...</p>
         )
     }
 
@@ -74,16 +87,13 @@ function Meal(props) {
 
 
     const renderedGuests = () => {
+
         if(meal.guests.length === 0) {
             return(
                 <p>no guests have been added</p>
             )
+
         }else {
-            // meal.guests.map(guest => {
-            //     return( 
-            //     <p>{guest.guest_name}</p>
-            //     )
-            // })
 
             const mapGuest = guest => {
                 return( 
@@ -91,9 +101,27 @@ function Meal(props) {
                 )
             }
            return meal.guests.map(mapGuest);
+
         }
+
     }
 
+    const renderItem = () => {
+        if(meal.items.length === 0) {
+            return(
+                <p>No items have been added</p>
+                )
+        } else {
+            const mapItem = item => {
+                return( 
+                <p>{item.items}</p>
+                )
+            }
+       return meal.items.map(mapItem);
+        }
+    }
+    
+    
     return (
         <div className='edit-container'>
             <div className='rendered-component'>

@@ -10,12 +10,12 @@ export default function Nav() {
 
     return (
         <div className='navigation'>
-            <Link to='/potlucks' className='title'>Potluck Planner</Link>
+            <Link to='/Dashboard' className='title'>Potluck Planner</Link>
             <nav className='nav-links'>
-                <Link className='nav-link' to='/api/auth/login'>Login</Link>
-                <Link className='nav-link' to='/login' onClick={signOut}>Sign Out</Link>
-                <Link className='nav-link' to='/api/potluck'>Create A Potluck</Link> 
-                <Link className='nav-link' to='/potlucks/profile'>Profile</Link>
+                <Link className='nav-link' to='/Login'>Login</Link>
+                <Link className='nav-link' to='/Login' onClick={signOut}>Sign Out</Link>
+                <Link className='nav-link' to='/Create'>Create A Potluck</Link> 
+                <Link className='nav-link' to='/Profile'>Profile</Link>
             </nav>
         </div>
     )
