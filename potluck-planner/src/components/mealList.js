@@ -28,7 +28,7 @@ const MealList = () => {
         <div className='card-container'>
             {
                 data.map(potluck => (
-                    <Link key={potluck.id} to={`/api/potlucks/${potluck.id}`}>
+                    <Link key={potluck.id} to={`/Potluck/${potluck.id}`}>
                         <MealCard {...potluck} />
                     </Link> 
                 ))

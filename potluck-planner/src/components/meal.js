@@ -28,7 +28,7 @@ function Meal(props) {
             .put(`/api/potluck/${meal.potluck.id}`, potluck)
             .then(res => {
                 console.log('handleupdate res', res)
-                props.history.push(`/potlucks`);
+                props.history.push('/Dashboard');
             })
             .catch(err => console.log('Error handling update', err)) 
         
@@ -39,7 +39,7 @@ function Meal(props) {
         axiosWithAuth()
             .delete(`/api/potluck/${meal.potluck.id}`)
             .then(res=> {
-                props.history.push('/potlucks')
+                props.history.push('/Dashboard')
             })
             .catch(err => console.log(err))
     
