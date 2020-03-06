@@ -44,7 +44,6 @@ function Register({values, errors, touched, status}) {
                         <p>{errors.password}</p>
                     )}
                 </label>          
-                <button type="submit">Register</button>
                 <button type="submit" className='register-button'>Register</button>
                 <a href="/api/auth/login">Login</a>
 

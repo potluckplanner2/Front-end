@@ -71,21 +71,6 @@ function Meal(props) {
     }
 
 
-    const renderItem = () => {
-        if (meal.items.length === 0) {
-            return (<p>No items have been added</p>)
-        }else{
-            const mapItem = item => {
-            return( 
-            <p>{item.items}</p>
-            )
-        }
-       return meal.items.map(mapItem);
-        }}
-    
-    
-
-
     const renderedGuests = () => {
 
         if(meal.guests.length === 0) {
