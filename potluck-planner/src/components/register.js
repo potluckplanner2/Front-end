@@ -45,7 +45,7 @@ function Register({values, errors, touched, status}) {
                     )}
                 </label>          
                 <button type="submit" className='register-button'>Register</button>
-                <a href="/api/auth/login">Login</a>
+                <a href="/login">Login</a>
 
             </Form>
         </div>
