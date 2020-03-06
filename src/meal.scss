@@ -3,7 +3,7 @@
     flex-wrap:wrap;
     width: 100%;
     justify-content: center;
-    margin: 2% 0;
+    margin: 1% 0 0;
 
     .rendered-component {
         width: 100%;
@@ -11,15 +11,29 @@
 
     .guests-container {
         width: 20%;
-        background-color: orange;
+        color: #fff5d1;
+        background-color: #ce6c47;
         font-size: 1.2rem;
-        margin: 2% 0;
+        margin: 2%;
+        border: 3px solid #fff5d1;
+        border-radius: 4px;
+    }
+
+    .items-container {
+        width: 20%;
+        color: #fff5d1;
+        background-color: #ce6c47;
+        font-size: 1.2rem;
+        margin: 2%;
+        border: 3px solid #fff5d1;
+        border-radius: 4px;
     }
 
     .buttons-container {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
         width: 100%;
+
         .update-button-container {
             width: 40%;
             .update-button {
@@ -29,7 +43,7 @@
                 padding: 8px 0;
                 border: none;
                 background-color:  #960200;
-                margin: 6% 0 4%;
+                margin: 4% 0 2%;
                 font-family: "Lobster";
                 font-size: 1.4em;
                 transition: .2s;
@@ -52,7 +66,7 @@
                 padding: 8px 0;
                 border: none;
                 background-color:  #960200;
-                margin: 6% 0 4%;
+                margin: 4% 0 2%;
                 font-family: "Lobster";
                 font-size: 1.4em;
                 transition: .2s;
